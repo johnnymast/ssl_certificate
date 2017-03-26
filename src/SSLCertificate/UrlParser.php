@@ -52,7 +52,7 @@ class UrlParser
     /**
      * Return information about the url scheme.
      *
-     * @return mixed
+     * @return string
      */
     public function getType()
     {

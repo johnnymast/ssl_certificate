@@ -2,8 +2,8 @@
 
 namespace spec\JM\Validators\SSLCertificate\Sources;
 
-use JM\Validators\SSLCertificate\Sources\Web;
 use JM\Validators\SSLCertificate\CertInfo;
+use JM\Validators\SSLCertificate\Sources\Web;
 use PhpSpec\ObjectBehavior;
 
 class WebSpec extends ObjectBehavior

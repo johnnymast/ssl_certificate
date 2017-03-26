@@ -25,7 +25,7 @@ class File implements SourceInterface
     /**
      * Load the Certificate from the given
      * source location.
-     * @return mixed
+     * @return CertInfo
      * @internal param string $source
      */
     public function load()

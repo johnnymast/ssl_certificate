@@ -13,7 +13,8 @@ class CertInfoSpec extends ObjectBehavior
         $this->shouldHaveType(CertInfo::class);
     }
 
-    function is_should_have_isvalid() {
-        $this->isValid();
+    function it_should_have_is_valid_and_returns_false_by_default() {
+
+        $this->isValid()->shouldReturn(false);
     }
 }

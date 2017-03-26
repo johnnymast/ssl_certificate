@@ -1,23 +1,20 @@
 <?php
 
 namespace JM\Validators\Tests\SSLCertificate\Sources;
-
 use JM\Validators\SSLCertificate\CertInfo;
-use JM\Validators\SSLCertificate\Sources\File;
+use JM\Validators\SSLCertificate\Sources\Web;
 
-class FileTest extends \PHPUnit_Framework_TestCase
+class WebTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
-     * Test that loading from the File source returns
+     * Test that loading from the Web source returns
      * a CertInfo object.
      */
     public function test_it_should_return_an_certificate()
     {
-        $file = new File('somefile');
-        $this->assertInstanceOf(CertInfo::class, $file->load());
+        $web = new Web('somefile');
+        $this->assertInstanceOf(CertInfo::class, $web->load());
     }
-
 
     /**
      * Test that loading from a File source returns a certificate, even if this
@@ -25,10 +22,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_should_return_an_invalid_certificate_on_bogus_certificate()
     {
-        $file = new File('somefile');
-        $cert = $file->load();
+        $web = new Web('somesource');
+        $cert = $web->load();
         $this->assertInstanceOf(CertInfo::class, $cert);
     }
+
 
     /**
      * Test that the default instance of an empty certificate states that it
@@ -36,8 +34,9 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function test_an_invalid_source_location_returns_an_invalid_certificate()
     {
-        $file = new File('somesource');
-        $cert = $file->load();
+        $web = new Web('somesource');
+        $cert = $web->load();
         $this->assertFalse($cert->isValid());
     }
+
 }

@@ -4,7 +4,6 @@ namespace JM\Validators\Tests;
 
 use JM\Validators\SSLCertificate\SourceFactory;
 use JM\Validators\SSLCertificate\Sources\Web;
-use SourceFactoryTest;
 
 class CertificateTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +11,6 @@ class CertificateTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that an InvalidHostException will be thrown if the parser could not
      * extract the scheme from the url.
-     *
      * @expectedException JM\Validators\SSLCertificate\Exceptions\InvalidHostException
      */
     public function test_it_throws_invalid_host_exception_on_invalid_url()
@@ -24,7 +22,6 @@ class CertificateTest extends \PHPUnit_Framework_TestCase
     /**
      * Returns that the factory throws an UnknownSourceException if the parsed
      * scheme does not match any known type.
-     *
      * @expectedException JM\Validators\SSLCertificate\Exceptions\UnknownSourceException
      */
     public function test_it_throws_unknown_source_exception_on_unknown_source_mapping()

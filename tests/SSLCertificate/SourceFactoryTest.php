@@ -23,6 +23,7 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         return [
             [$faker->url, Web::class],
             [$faker->url, Web::class],
+            ['ssl://www.google.com', Web::class],
             ['file://myfile', File::class],
         ];
     }

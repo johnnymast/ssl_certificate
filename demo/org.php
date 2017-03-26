@@ -22,3 +22,6 @@ $response = stream_context_get_params($client);
 $certificateProperties = openssl_x509_parse($response['options']['ssl']['peer_certificate']);
 
 print_r($certificateProperties);
+
+$json = json_encode($certificateProperties);
+file_put_contents('cert.json', $json);

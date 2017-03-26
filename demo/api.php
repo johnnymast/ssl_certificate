@@ -1,9 +1,13 @@
 <?php
 require dirname(__FILE__).'/../vendor/autoload.php';
+error_reporting(E_ALL);
+ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$isValid = Certificate::of('google.com')
-    ->isValid();
+$info = Certificate::of('ssl://google.com');
 
-echo 'isValid: '.$isValid;
+print_r($info);
+
+
+echo 'done';

@@ -17,6 +17,7 @@ class SourceFactory
     protected static $map = [
         'http'  => Web::class,
         'https' => Web::class,
+        'ssl'   => Web::class,
         'file'  => File::class,
     ];
 

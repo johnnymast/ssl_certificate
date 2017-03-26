@@ -35,7 +35,7 @@ class File implements SourceInterface
             $content = file_get_contents($content);
             $info = json_decode($content);
 
-            if (is_array($info) == true) {
+            if (is_array($info) === true) {
                 return new CertInfo($info);
             }
         }

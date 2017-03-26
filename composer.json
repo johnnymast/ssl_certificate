@@ -14,7 +14,8 @@
   },
   "autoload": {
     "psr-4": {
-      "JM\\Validators\\": "src/"
+      "JM\\Validators\\": "src/",
+      "JM\\Validators\\Tests\\": "tests/"
     }
   },
   "require-dev": {

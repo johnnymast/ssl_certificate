@@ -1,4 +1,4 @@
 suites:
-  sslcertificate_suite:
+  sslcertificate_core:
       namespace: JM\Validators
       psr4_prefix: JM\Validators

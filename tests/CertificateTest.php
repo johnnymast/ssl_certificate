@@ -1,12 +1,12 @@
 <?php
 
-namespace JM\Validators\Tests\SSLCertificate;
+namespace JM\Validators\Tests;
 
 use JM\Validators\SSLCertificate\SourceFactory;
 use JM\Validators\SSLCertificate\Sources\Web;
 use SourceFactoryTest;
 
-class Test extends \PHPUnit_Framework_TestCase
+class CertificateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

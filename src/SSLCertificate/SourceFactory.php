@@ -4,6 +4,8 @@ namespace JM\Validators\SSLCertificate;
 
 use JM\Validators\SSLCertificate\Exceptions\InvalidHostException;
 use JM\Validators\SSLCertificate\Exceptions\UnknownSourceException;
+use JM\Validators\SSLCertificate\Sources\File;
+use JM\Validators\SSLCertificate\Sources\SourceInterface;
 use JM\Validators\SSLCertificate\Sources\Web;
 
 class SourceFactory
@@ -13,8 +15,9 @@ class SourceFactory
      * @var array
      */
     protected static $map = [
-        'http' => Web::class,
+        'http'  => Web::class,
         'https' => Web::class,
+        'file'  => File::class,
     ];
 
 
@@ -39,10 +42,44 @@ class SourceFactory
             }
         }
 
-        if ( ! isset(self::$map[$sourceType])) {
+        $source = self::getMapping($sourceType);
+
+        if ( ! $source) {
             throw new UnknownSourceException('Unknown source type for '.$sourceType);
         }
 
-        return new self::$map[$sourceType];
+        $instance = new $source($url);
+
+        if ( ! $instance instanceof SourceInterface) {
+            throw new UnknownSourceException('Source '.$source.' did not implement SourceInterface');
+        }
+
+        return $instance;
+    }
+
+
+    /**
+     * Add a new Custom mapping to the factory. This can be used
+     * to add your own custom sources.
+     *
+     * @param string $scheme
+     * @param string $source
+     */
+    public static function addMapping($scheme = '', $source = '')
+    {
+        self::$map[$scheme] = $source;
+    }
+
+
+    /**
+     * Return a source for a scheme.
+     *
+     * @param string $scheme
+     *
+     * @return bool|mixed
+     */
+    public static function getMapping($scheme = '')
+    {
+        return (isset(self::$map[$scheme])) ? self::$map[$scheme] : false;
     }
 }

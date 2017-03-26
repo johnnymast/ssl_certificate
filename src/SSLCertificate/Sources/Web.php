@@ -2,18 +2,24 @@
 
 namespace JM\Validators\SSLCertificate\Sources;
 
+use JM\Validators\SSLCertificate\CertInfo;
+
 class Web implements SourceInterface
 {
 
-    public function getHost()
+    private $source = null;
+
+
+    public function __construct($source = '')
     {
-        // TODO: Implement getHost() method.
+        $this->source = $source;
     }
 
 
-    public function getPort()
+    public function load()
     {
-        // TODO: Implement getPort() method.
+        // TODO: Implement load() method.
+        return new CertInfo();
     }
 
 }

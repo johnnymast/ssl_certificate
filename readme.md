@@ -1,4 +1,5 @@
 
+[![Build Status](https://travis-ci.org/johnnymast/ssl_certificate.svg?branch=master)](https://travis-ci.org/johnnymast/ssl_certificate)
 
 # PACKAGE NAME
 

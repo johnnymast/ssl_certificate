@@ -6,6 +6,16 @@
 
 LORUM IPSUM
 
+## Requirements
+
+The following versions of PHP are supported by this version.
+
++ PHP 5.6
++ PHP 7.0
++ PHP 7.1
++ HHVM
+
+
 ## Author
 
 This package is created and maintained by [Johnny Mast](mailto:mastjohnny@gmail.com). For feature requests or suggestions you could consider sending me an e-mail.

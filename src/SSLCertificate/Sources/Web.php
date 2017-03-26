@@ -30,7 +30,7 @@ class Web implements SourceInterface
 
         $response = stream_context_get_params($client);
         $certificateProperties = openssl_x509_parse($response['options']['ssl']['peer_certificate']);
-
+        print_r($certificateProperties);
         return new CertInfo($certificateProperties);
     }
 

@@ -14,4 +14,5 @@ class CertInfoTest extends \PHPUnit_Framework_TestCase
         $cert = new CertInfo([]);
         $this->assertFalse($cert->isValid());
     }
+
 }

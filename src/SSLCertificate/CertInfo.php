@@ -23,5 +23,10 @@ class CertInfo
         return $this->valid;
     }
 
+    public function isExpired()
+    {
+        // TODO: write logic here
+    }
+
 
 }

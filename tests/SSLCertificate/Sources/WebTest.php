@@ -31,6 +31,7 @@ class WebTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that the default instance of an empty certificate states that it
      * is in fact invalid.
+     *
      */
     public function test_an_invalid_source_location_returns_an_invalid_certificate()
     {

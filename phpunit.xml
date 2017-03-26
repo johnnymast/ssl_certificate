@@ -13,6 +13,7 @@
     <testsuites>
         <testsuite>
             <directory suffix=".php">./tests/</directory>
+            <exclude>./tests/SSLCertificate/Sources/WebTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>

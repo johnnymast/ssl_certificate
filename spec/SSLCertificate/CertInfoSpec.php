@@ -17,4 +17,8 @@ class CertInfoSpec extends ObjectBehavior
 
         $this->isValid()->shouldReturn(false);
     }
+
+    function it_has_isExpired() {
+        $this->isExpired();
+    }
 }

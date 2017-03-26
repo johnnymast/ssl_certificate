@@ -3,10 +3,9 @@
 namespace JM\Validators;
 
 use JM\Validators\SSLCertificate\SourceFactory;
-use JM\Validators\SSLCertificate\Sources\Web;
 use JM\Validators\SSLCertificate\Sources\SourceInterface;
 
-class SSLCertificate
+class Certificate
 {
     protected $source = null;
 

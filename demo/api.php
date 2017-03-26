@@ -1,9 +1,9 @@
 <?php
 require dirname(__FILE__).'/../vendor/autoload.php';
 
-use JM\Validators\SSLCertificate;
+use JM\Validators\Certificate;
 
-$isValid = SSLCertificate::of('google.com')
+$isValid = Certificate::of('google.com')
     ->isValid();
 
-echo 'done';
+echo 'isValid: '.$isValid;

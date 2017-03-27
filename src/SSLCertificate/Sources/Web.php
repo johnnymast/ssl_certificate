@@ -4,20 +4,19 @@ namespace JM\Validators\SSLCertificate\Sources;
 
 use JM\Validators\SSLCertificate\CertInfo;
 
-class Web implements SourceInterface
+class Web extends SourceAbstract implements SourceInterface
 {
 
     private $source = null;
-
 
     public function __construct($source = '')
     {
         $this->source = $source;
     }
 
-
     public function load()
     {
+        return new CertInfo();
         // Step 1: downloading the certificate from the site
         $streamContext = stream_context_create([
             'ssl' => [

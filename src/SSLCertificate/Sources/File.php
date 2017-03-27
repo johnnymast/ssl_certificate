@@ -4,7 +4,7 @@ namespace JM\Validators\SSLCertificate\Sources;
 
 use JM\Validators\SSLCertificate\CertInfo;
 
-class File implements SourceInterface
+class File extends SourceAbstract implements SourceInterface
 {
 
     private $source;

@@ -12,6 +12,8 @@ class WebSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(Web::class);
+        $this->shouldImplement('JM\Validators\SSLCertificate\Sources\SourceInterface');
+
     }
 
 

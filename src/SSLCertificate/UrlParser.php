@@ -56,7 +56,6 @@ class UrlParser
      */
     public function getType()
     {
-        //print_r($this->information);
         return (isset($this->information['scheme'])) ? $this->information['scheme'] : 'unknown';
     }
 }

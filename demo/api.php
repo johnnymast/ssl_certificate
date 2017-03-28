@@ -5,9 +5,10 @@ ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$info = Certificate::of('ssl://google.com');
+$version = Certificate::of('ssl://google.com:443')
+    ->hash;
 
-print_r($info);
 
 
-echo 'done';
+
+echo 'Version: '.$version;

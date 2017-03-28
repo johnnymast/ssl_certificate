@@ -21,7 +21,7 @@ class SourceAbstract
      * to use.
      * @var string
      */
-    private $defaultAdapter = Curl::class;
+    private $defaultAdapter = Stream::class;
 
 
     /**
@@ -39,7 +39,7 @@ class SourceAbstract
 
         if (extension_loaded('curl')) {
             if ($this->defaultAdapter != Curl::class) {
-                $this->adapter = Stream::class;
+                $this->adapter = new $this->defaultAdapter();
             } else {
                 $this->adapter = new Curl();
             }

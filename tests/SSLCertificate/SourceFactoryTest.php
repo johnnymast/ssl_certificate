@@ -100,16 +100,24 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
          * over curl.
          */
         if (extension_loaded('curl')) {
+
             /**
              * The default adapter is Curl, change this to Stream
              * and test if an instance of Stream is returned.
              */
-
-            $source = SourceFactory::create('https:///www.google.com');
+            $source = SourceFactory::create('https://www.google.com');
             $source->setDefaultAdapter(Stream::class);
-            $adapter = $source->adapter();
 
-         //   $this->assertInstanceOf(Stream::class, $adapter);
+            $this->assertInstanceOf(Stream::class, $source->adapter());
+            unset($source);
+
+            /**
+             * Test that without setting the default Adapter the in class
+             * default Adapter will be used.
+             */
+            $source = SourceFactory::create('https://www.google.com');
+            $this->assertInstanceOf(Stream::class, $source->adapter());
+
         } else {
             $source = SourceFactory::create('https://www.google.com');
             $this->assertInstanceOf(Stream::class, $source->adapter());

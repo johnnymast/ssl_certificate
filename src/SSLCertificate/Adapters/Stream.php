@@ -10,6 +10,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
         $streamContext = stream_context_create([
             'ssl' => [
                 'capture_peer_cert' => true,
+                'verify_peer' => false,
             ],
         ]);
         if (! $streamContext) {
@@ -17,7 +18,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
         }
 
         // creates errors
-        $client = @stream_socket_client($host,
+        $client = stream_socket_client($host,
             $errorNumber,
             $errorDescription,
             $timeout = 180,

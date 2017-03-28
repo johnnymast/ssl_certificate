@@ -5,7 +5,7 @@ ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$expired = Certificate::of('ssl://google.com:443')
+$expired = Certificate::of('ssl://locovsworld.com:443')
     ->isExpired();
 
 

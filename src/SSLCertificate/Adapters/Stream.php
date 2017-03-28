@@ -12,17 +12,25 @@ class Stream extends AdapterAbstract implements AdapterInterface
                 'capture_peer_cert' => true,
             ],
         ]);
+        if (! $streamContext) {
+            return false;
+        }
 
-        $client = stream_socket_client($host,
+        // creates errors
+        $client = @stream_socket_client($host,
             $errorNumber,
             $errorDescription,
             $timeout = 180,
             STREAM_CLIENT_CONNECT,
             $streamContext);
+        if (! $client) {
+            return false;
+        }
+        $response = @stream_context_get_params($client);
+        if (! $response) {
+            return false;
+        }
 
-        $response = stream_context_get_params($client);
-        $certificateProperties = openssl_x509_parse($response['options']['ssl']['peer_certificate']);
-
-        return $certificateProperties;
+        return openssl_x509_parse($response['options']['ssl']['peer_certificate']);
     }
 }

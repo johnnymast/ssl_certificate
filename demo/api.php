@@ -5,10 +5,10 @@ ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$version = Certificate::of('ssl://google.com:443')
-    ->hash;
+$expired = Certificate::of('ssl://google.com:443')
+    ->isExpired();
 
 
 
 
-echo 'Version: '.$version;
+echo 'Expired: '.(($expired) ? 'true' : 'false');

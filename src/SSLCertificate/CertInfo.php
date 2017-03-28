@@ -81,6 +81,6 @@ class CertInfo
      */
     public function isExpired()
     {
-        // TODO: write logic here
+        return (time() > $this->validTo);
     }
 }

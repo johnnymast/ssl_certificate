@@ -3,6 +3,7 @@
 namespace JM\Validators\Tests\SSLCertificate;
 
 use Faker;
+use JM\Validators\SSLCertificate\Adapters\Stream;
 use JM\Validators\SSLCertificate\SourceFactory;
 use JM\Validators\SSLCertificate\Sources\File;
 use JM\Validators\SSLCertificate\Sources\SourceInterface;
@@ -24,6 +25,7 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
             [$faker->url, Web::class],
             [$faker->url, Web::class],
             ['ssl://www.google.com', Web::class],
+            ['https://www.google.com', Web::class],
             ['file://myfile', File::class],
         ];
     }
@@ -88,4 +90,29 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+
+    /**
+     *
+     */
+    public function test_it_should_pick_the_right_adapter_for_the_job() {
+        /**
+         * Test that it will load the default adapter
+         * over curl.
+         */
+        if (extension_loaded('curl')) {
+            /**
+             * The default adapter is Curl, change this to Stream
+             * and test if an instance of Stream is returned.
+             */
+
+            $source = SourceFactory::create('https:///www.google.com');
+            $source->setDefaultAdapter(Stream::class);
+            $adapter = $source->adapter();
+
+         //   $this->assertInstanceOf(Stream::class, $adapter);
+        } else {
+            $source = SourceFactory::create('https://www.google.com');
+            $this->assertInstanceOf(Stream::class, $source->adapter());
+        }
+    }
 }

@@ -16,6 +16,8 @@ class Web extends SourceAbstract implements SourceInterface
 
     public function load()
     {
+        $adapter = $this->adapter();
+
         return new CertInfo();
         // Step 1: downloading the certificate from the site
         $streamContext = stream_context_create([

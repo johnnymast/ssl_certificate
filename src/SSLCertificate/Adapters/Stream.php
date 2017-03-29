@@ -18,7 +18,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
         }
 
         // creates errors
-        $client = stream_socket_client($host,
+        $client = @stream_socket_client($host,
             $errorNumber,
             $errorDescription,
             $timeout = 180,

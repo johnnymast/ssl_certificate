@@ -6,6 +6,8 @@ namespace JM\Validators\SSLCertificate;
 class CertInfo
 {
 
+    protected $valid = false;
+
     /**
      * @var array
      */

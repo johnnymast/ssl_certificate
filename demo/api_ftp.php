@@ -5,9 +5,10 @@ ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$cert = Certificate::of('ssl://google.com:443')
-    ->toArray();
+$expired = Certificate::of('ftp://locovsworld.com:21')
+    ->isExpired();
 
 
-print_r($cert);
 
+
+echo 'Expired: '.(($expired) ? 'true' : 'false');

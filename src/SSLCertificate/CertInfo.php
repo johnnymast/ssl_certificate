@@ -85,4 +85,24 @@ class CertInfo
     {
         return (time() > $this->validTo);
     }
+
+
+    /**
+     * Return the certificate as array.
+     *
+     * @return array
+     */
+    public function toArray() {
+        return $this->fields;
+    }
+
+
+    /**
+     * Return the certificate as json string.
+     *
+     * @return string
+     */
+    public function toJson() {
+        return json_encode($this->fields);
+    }
 }

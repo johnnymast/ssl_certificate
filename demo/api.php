@@ -6,7 +6,7 @@ ini_set('display_errors', true);
 use JM\Validators\Certificate;
 
 $cert = Certificate::of('ssl://google.com:443')
-    ->toArray();
+    ->issuer();
 
 
 print_r($cert);

@@ -4,7 +4,6 @@ namespace spec\JM\Validators\SSLCertificate\Adapters;
 
 use JM\Validators\SSLCertificate\Adapters\AdapterAbstract;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class AdapterAbstractSpec extends ObjectBehavior
 {

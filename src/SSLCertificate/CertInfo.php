@@ -2,20 +2,23 @@
 
 namespace JM\Validators\SSLCertificate;
 
-// TODO make sure we dont have errors
+/**
+ * Class CertInfo
+ *
+ * @package JM\Validators\SSLCertificate
+ */
 class CertInfo
 {
-
-    protected $valid = false;
 
     /**
      * @var array
      */
     private $fields = [];
 
-
     /**
      * CertInfo constructor.
+     *
+     * @param array $fields
      */
     public function __construct($fields = [])
     {
@@ -52,6 +55,7 @@ class CertInfo
         if (isset($this->fields[$name]) == true) {
             return $this->fields[$name];
         }
+        return null;
     }
 
 
@@ -66,15 +70,17 @@ class CertInfo
         if (isset($this->fields[$name]) == true) {
             return $this->fields[$name];
         }
+        return null;
     }
 
 
     /**
+     * @deprecated 
      * @return mixed
      */
     public function isValid()
     {
-        return $this->valid;
+        return false;
     }
 
 

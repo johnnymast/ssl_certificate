@@ -9,20 +9,17 @@ use PhpSpec\ObjectBehavior;
 
 class CertificateSpec extends ObjectBehavior
 {
-
     function it_is_initializable()
     {
         $this->beConstructedWith(new File('somefile'));
         $this->shouldHaveType(Certificate::class);
     }
 
-
     function it_getProvidedInformation_should_return_cert_info()
     {
         $this->beConstructedWith(new File('somefile'));
         $this->getProvidedInformation()->shouldReturnAnInstanceOf(CertInfo::class);
     }
-
 
     function it_should_return_certificate_information_from_the_function_named_of()
     {

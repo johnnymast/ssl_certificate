@@ -6,7 +6,9 @@ use JM\Validators\SSLCertificate\CertInfo;
 
 class File extends SourceAbstract implements SourceInterface
 {
-
+    /**
+     * @var bool|string
+     */
     private $source;
 
 

@@ -7,7 +7,6 @@ use JM\Validators\SSLCertificate\Sources\File;
 
 class FileTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test that loading from the File source returns
      * a CertInfo object.
@@ -17,7 +16,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $file = new File('somefile');
         $this->assertInstanceOf(CertInfo::class, $file->load());
     }
-
 
     /**
      * Test that loading from a File source returns a certificate, even if this

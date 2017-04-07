@@ -8,10 +8,10 @@ use JM\Validators\SSLCertificate\Adapters\Stream;
 
 class SourceAbstract
 {
-
     /**
      * The Adapter we will use either Curl
      * or Streams.
+     *
      * @var AdapterInterface|null
      */
     private $adapter = null;
@@ -19,10 +19,10 @@ class SourceAbstract
     /**
      * This will be the default Adapter
      * to use.
+     *
      * @var string
      */
     private $defaultAdapter = Stream::class;
-
 
     /**
      * Determine the adapter to use.
@@ -50,9 +50,9 @@ class SourceAbstract
              */
             $this->adapter = new Stream();
         }
+
         return $this->adapter;
     }
-
 
     /**
      * Set the default Adapter this can either

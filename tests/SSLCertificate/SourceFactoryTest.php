@@ -11,9 +11,9 @@ use JM\Validators\SSLCertificate\Sources\Web;
 
 class SourceFactoryTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * We use this function to test the mappings.
+     *
      * @see test_it_should_not_throw_en_exception_on_valid_url
      * @return array
      */
@@ -30,16 +30,15 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-
     /**
      * Test that InvalidHostException is thrown for any unknown host.
+     *
      * @expectedException JM\Validators\SSLCertificate\Exceptions\InvalidHostException
      */
     public function test_it_should_throw_an_exception_on_invalid_url()
     {
         SourceFactory::create('unknown');
     }
-
 
     /**
      * Test that the create function returns an instance of SourceInterface on a valid
@@ -51,10 +50,10 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(SourceInterface::class, $actual);
     }
 
-
     /**
      * Test that UnknownSourceException will be thrown if no valid mapping was found. This
      * means that there is no Source found for the url.
+     *
      * @expectedException JM\Validators\SSLCertificate\Exceptions\UnknownSourceException
      */
     public function test_it_should_throw_an_exception_on_invalid_mapping()
@@ -62,9 +61,9 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         SourceFactory::create('unknown://www.google.com');
     }
 
-
     /**
      * Test that a source is returned on a vali
+     *
      * @dataProvider availableMappings
      *
      * @param string $url
@@ -75,7 +74,6 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         $actual = SourceFactory::create($url);
         $this->assertInstanceOf($expected, $actual);
     }
-
 
     /**
      * Test that getMapping returns what addMapping has added.
@@ -90,11 +88,11 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
-
     /**
      *
      */
-    public function test_it_should_pick_the_right_adapter_for_the_job() {
+    public function test_it_should_pick_the_right_adapter_for_the_job()
+    {
         /**
          * Test that it will load the default adapter
          * over curl.
@@ -117,7 +115,6 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
              */
             $source = SourceFactory::create('https://www.google.com');
             $this->assertInstanceOf(Stream::class, $source->adapter());
-
         } else {
             $source = SourceFactory::create('https://www.google.com');
             $this->assertInstanceOf(Stream::class, $source->adapter());

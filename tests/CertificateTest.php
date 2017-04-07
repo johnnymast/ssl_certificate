@@ -7,10 +7,10 @@ use JM\Validators\SSLCertificate\Sources\Web;
 
 class CertificateTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test that an InvalidHostException will be thrown if the parser could not
      * extract the scheme from the url.
+     *
      * @expectedException JM\Validators\SSLCertificate\Exceptions\InvalidHostException
      */
     public function test_it_throws_invalid_host_exception_on_invalid_url()
@@ -18,17 +18,16 @@ class CertificateTest extends \PHPUnit_Framework_TestCase
         SourceFactory::create('unknownhost.com');
     }
 
-
     /**
      * Returns that the factory throws an UnknownSourceException if the parsed
      * scheme does not match any known type.
+     *
      * @expectedException JM\Validators\SSLCertificate\Exceptions\UnknownSourceException
      */
     public function test_it_throws_unknown_source_exception_on_unknown_source_mapping()
     {
         SourceFactory::create('unknownhost.com', 'bleep');
     }
-
 
     /**
      * Test that create returns an instance of Web for the https
@@ -39,7 +38,6 @@ class CertificateTest extends \PHPUnit_Framework_TestCase
         $actual = SourceFactory::create('http://www.google.com');
         $this->assertInstanceOf(Web::class, $actual);
     }
-
 
     /**
      * Test that create returns an instance of Web for the http

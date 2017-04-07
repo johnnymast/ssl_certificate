@@ -7,12 +7,10 @@ use PhpSpec\ObjectBehavior;
 
 class SourceAbstractSpec extends ObjectBehavior
 {
-
     function it_is_initializable()
     {
         $this->shouldHaveType(SourceAbstract::class);
     }
-
 
     function it_should_have_function_adapter()
     {

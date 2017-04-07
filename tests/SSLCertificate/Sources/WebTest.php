@@ -1,6 +1,7 @@
 <?php
 
 namespace JM\Validators\Tests\SSLCertificate\Sources;
+
 use JM\Validators\SSLCertificate\CertInfo;
 use JM\Validators\SSLCertificate\Sources\Web;
 
@@ -27,7 +28,6 @@ class WebTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CertInfo::class, $cert);
     }
 
-
     /**
      * Test that the default instance of an empty certificate states that it
      * is in fact invalid.
@@ -39,5 +39,4 @@ class WebTest extends \PHPUnit_Framework_TestCase
         $cert = $web->load();
         $this->assertFalse($cert->isValid());
     }
-
 }

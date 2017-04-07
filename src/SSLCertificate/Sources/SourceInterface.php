@@ -4,7 +4,6 @@ namespace JM\Validators\SSLCertificate\Sources;
 
 interface SourceInterface
 {
-
     /**
      * Construct the source with the source
      * location.

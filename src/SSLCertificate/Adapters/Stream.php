@@ -4,7 +4,14 @@ namespace JM\Validators\SSLCertificate\Adapters;
 
 class Stream extends AdapterAbstract implements AdapterInterface
 {
-
+    /**
+     * Interact with the given source and
+     * grab the certificate.
+     *
+     * @param string $host
+     * @param int $port
+     * @return mixed
+     */
     public function interact($host = '', $port = 0)
     {
         $streamContext = stream_context_create([
@@ -18,12 +25,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
         }
 
         // creates errors
-        $client = @stream_socket_client($host,
-            $errorNumber,
-            $errorDescription,
-            $timeout = 180,
-            STREAM_CLIENT_CONNECT,
-            $streamContext);
+        $client = @stream_socket_client($host, $errorNumber, $errorDescription, $timeout = 180, STREAM_CLIENT_CONNECT, $streamContext);
         if (! $client) {
             return false;
         }

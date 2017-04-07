@@ -76,7 +76,7 @@ class CertInfo
 
     /**
      * @deprecated 
-     * @return mixed
+     * @return boolean
      */
     public function isValid()
     {

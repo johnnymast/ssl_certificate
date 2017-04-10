@@ -17,7 +17,7 @@ class Curl extends AdapterAbstract implements AdapterInterface
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $host);
-        curl_setopt($ch, CURLOPT_PORT, $port);
+        if ($port > 0) curl_setopt($ch, CURLOPT_PORT, $port);;
         curl_setopt($ch, CURLOPT_CERTINFO, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_NOBODY, 1);

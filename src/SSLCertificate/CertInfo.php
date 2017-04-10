@@ -9,7 +9,6 @@ namespace JM\Validators\SSLCertificate;
  */
 class CertInfo
 {
-
     /**
      * @var array
      */
@@ -23,41 +22,26 @@ class CertInfo
     public function __construct($fields = [])
     {
         $this->fields = [
-            'name'             => '',
-            'subject'          => '',
-            'hash'             => '',
-            'issuer'           => '',
-            'version'          => '',
-            'serialNumber'     => '',
-            'validFrom'        => '',
-            'validTo'          => '',
+            'name' => '',
+            'subject' => '',
+            'hash' => '',
+            'issuer' => '',
+            'version' => '',
+            'serialNumber' => '',
+            'validFrom' => '',
+            'validTo' => '',
             'validFrom_time_t' => '',
-            'validTo_time_t'   => '',
-            'signatureTypeSN'  => '',
-            'signatureTypeLN'  => '',
+            'validTo_time_t' => '',
+            'signatureTypeSN' => '',
+            'signatureTypeLN' => '',
             'signatureTypeNID' => '',
-            'purposes'         => '',
-            'extensions'       => ''
+            'purposes' => '',
+            'extensions' => '',
         ];
         if (is_array($fields) == true) {
             $this->fields = array_merge($this->fields, $fields);
         }
     }
-
-
-    /**
-     * @param $name
-     *
-     * @return mixed
-     */
-    function __get($name)
-    {
-        if (isset($this->fields[$name]) == true) {
-            return $this->fields[$name];
-        }
-        return null;
-    }
-
 
     /**
      * @param $name
@@ -70,12 +54,34 @@ class CertInfo
         if (isset($this->fields[$name]) == true) {
             return $this->fields[$name];
         }
+
         return null;
     }
 
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        if (isset($this->fields[$name]) == true) {
+            return $this->fields[$name];
+        }
+
+        return null;
+    }
 
     /**
-     * @deprecated 
+     * @return array
+     */
+    public function __debugInfo()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @deprecated
      * @return boolean
      */
     public function isValid()
@@ -83,32 +89,32 @@ class CertInfo
         return false;
     }
 
-
     /**
-     *
+     * Check if the certificate is expired
+     * or not.
      */
     public function isExpired()
     {
-        return (time() > $this->validTo);
+        return (time() > $this->fields['validTo_time_t']);
     }
-
 
     /**
      * Return the certificate as array.
      *
      * @return array
      */
-    public function toArray() {
+    public function toArray()
+    {
         return $this->fields;
     }
-
 
     /**
      * Return the certificate as json string.
      *
      * @return string
      */
-    public function toJson() {
+    public function toJson()
+    {
         return json_encode($this->fields);
     }
 }

@@ -19,6 +19,7 @@ class SourceFactory
         'https' => Web::class,
         'ssl'   => Web::class,
         'file'  => File::class,
+        'imap'  => Web::class,
     ];
 
 

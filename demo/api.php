@@ -5,7 +5,7 @@ ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$cert = Certificate::of('ssl://google.com:443')
+$cert = Certificate::of('https://digital4u.nl')
     ->issuer();
 
 

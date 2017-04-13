@@ -22,7 +22,7 @@ class SourceAbstract
      *
      * @var string
      */
-    private $defaultAdapter = Curl::class;
+    private $defaultAdapter = Stream::class;
 
     /**
      * Determine the adapter to use.

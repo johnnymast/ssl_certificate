@@ -37,7 +37,7 @@ class SourceFactorySpec extends ObjectBehavior
 
     function it_should_map_to_source_interface()
     {
-        $this->create('http://www.google.com')->shouldReturnAnInstanceOf(SourceInterface::class);
+        $this->create('https://www.google.com')->shouldReturnAnInstanceOf(SourceInterface::class);
     }
 
     function it_should_be_able_to_accept_new_mappings()

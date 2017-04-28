@@ -3,13 +3,14 @@
 namespace JM\Validators\SSLCertificate\Sources;
 
 use JM\Validators\SSLCertificate\CertInfo;
+use JM\Validators\SSLCertificate\Host;
 
 class Web extends SourceAbstract implements SourceInterface
 {
     /**
      * @var null|string
      */
-    private $source = null;
+    private $host = null;
 
     /**
      * Construct the source with the source
@@ -17,9 +18,9 @@ class Web extends SourceAbstract implements SourceInterface
      *
      * @param string $source
      */
-    public function __construct($source = '')
+    public function __construct(Host $host)
     {
-        $this->source = $source;
+        $this->host = $host;
     }
 
     /**
@@ -30,7 +31,7 @@ class Web extends SourceAbstract implements SourceInterface
     public function load()
     {
         $adapter = $this->adapter();
-        $info = $adapter->interact($this->source);
+        $info = $adapter->interact($this->host);
 
         return new CertInfo($info);
     }

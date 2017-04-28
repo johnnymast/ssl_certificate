@@ -22,10 +22,8 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
         $faker = Faker\Factory::create();
 
         return [
-            [$faker->url, Web::class],
-            [$faker->url, Web::class],
-            ['ssl://www.google.com', Web::class],
             ['https://www.google.com', Web::class],
+            ['imaps://smtp.gmail.com', Web::class],
             ['file://myfile', File::class],
         ];
     }
@@ -48,17 +46,6 @@ class SourceFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $actual = SourceFactory::create('file://some/local/file');
         $this->assertInstanceOf(SourceInterface::class, $actual);
-    }
-
-    /**
-     * Test that UnknownSourceException will be thrown if no valid mapping was found. This
-     * means that there is no Source found for the url.
-     *
-     * @expectedException JM\Validators\SSLCertificate\Exceptions\UnknownSourceException
-     */
-    public function test_it_should_throw_an_exception_on_invalid_mapping()
-    {
-        SourceFactory::create('unknown://www.google.com');
     }
 
     /**

@@ -23,7 +23,7 @@ class UrlParserTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_tells_the_truth_about_is_valid()
     {
-        $parser = new UrlParser('ssl://google.com');
+        $parser = new UrlParser('https://google.com');
         $this->assertTrue($parser->isValid());
 
         $parser = new UrlParser('google.com');

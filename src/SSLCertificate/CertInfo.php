@@ -81,7 +81,6 @@ class CertInfo
     }
 
     /**
-     * @deprecated
      * @return boolean
      */
     public function isValid()

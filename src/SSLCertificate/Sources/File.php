@@ -3,13 +3,14 @@
 namespace JM\Validators\SSLCertificate\Sources;
 
 use JM\Validators\SSLCertificate\CertInfo;
+use JM\Validators\SSLCertificate\Host;
 
 class File extends SourceAbstract implements SourceInterface
 {
     /**
-     * @var bool|string
+     * @var Host
      */
-    private $source;
+    private $host;
 
 
     /**
@@ -18,9 +19,9 @@ class File extends SourceAbstract implements SourceInterface
      *
      * @param string $source
      */
-    public function __construct($source = '')
+    public function __construct(Host $host)
     {
-        $this->source = substr($source, 7);
+        $this->host = $host;
     }
 
 
@@ -33,9 +34,9 @@ class File extends SourceAbstract implements SourceInterface
      */
     public function load()
     {
-        if (file_exists($this->source)) {
+        if (file_exists($this->host->host)) {
 
-            $content = file_get_contents($this->source);
+            $content = file_get_contents($this->host->host);
             $info = json_decode($content);
 
             if (is_array($info) === true) {

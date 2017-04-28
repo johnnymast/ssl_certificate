@@ -2,6 +2,8 @@
 
 namespace JM\Validators\SSLCertificate\Adapters;
 
+use JM\Validators\SSLCertificate\Host;
+
 class Curl extends AdapterAbstract implements AdapterInterface
 {
     /**
@@ -12,12 +14,12 @@ class Curl extends AdapterAbstract implements AdapterInterface
      * @param int $port
      * @return mixed
      */
-    public function interact($host = '', $port = 0)
+    public function interact(Host $host)
     {
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $host);
-        if ($port > 0) curl_setopt($ch, CURLOPT_PORT, $port);;
+        curl_setopt($ch, CURLOPT_URL, $host->host);
+        if ($host->post > 0) curl_setopt($ch, CURLOPT_PORT, $host->post);;
         curl_setopt($ch, CURLOPT_CERTINFO, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_NOBODY, 1);

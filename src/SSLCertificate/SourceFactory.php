@@ -15,11 +15,10 @@ class SourceFactory
      * @var array
      */
     protected static $map = [
-        'http'  => Web::class,
         'https' => Web::class,
         'ssl'   => Web::class,
         'file'  => File::class,
-        'imap'  => Web::class,
+        'imaps' => Web::class,
     ];
 
 
@@ -50,7 +49,7 @@ class SourceFactory
             throw new UnknownSourceException('Unknown source type for '.$sourceType);
         }
 
-        $instance = new $source($url);
+        $instance = new $source($parser->getHost());
 
         if ( ! $instance instanceof SourceInterface) {
             throw new UnknownSourceException('Source '.$source.' did not implement SourceInterface');

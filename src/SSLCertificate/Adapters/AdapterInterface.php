@@ -2,6 +2,8 @@
 
 namespace JM\Validators\SSLCertificate\Adapters;
 
+use JM\Validators\SSLCertificate\Host;
+
 interface AdapterInterface
 {
     /**
@@ -12,5 +14,5 @@ interface AdapterInterface
      * @param int $port
      * @return mixed
      */
-    public function interact($host = '', $port = 0);
+    public function interact(Host $host);
 }

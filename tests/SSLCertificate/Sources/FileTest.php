@@ -3,6 +3,7 @@
 namespace JM\Validators\Tests\SSLCertificate\Sources;
 
 use JM\Validators\SSLCertificate\CertInfo;
+use JM\Validators\SSLCertificate\Host;
 use JM\Validators\SSLCertificate\Sources\File;
 
 class FileTest extends \PHPUnit_Framework_TestCase
@@ -13,7 +14,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_should_return_an_certificate()
     {
-        $file = new File('somefile');
+        $file = new File(new Host());
         $this->assertInstanceOf(CertInfo::class, $file->load());
     }
 
@@ -23,7 +24,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_should_return_an_invalid_certificate_on_bogus_certificate()
     {
-        $file = new File('somefile');
+        $file = new File(new Host());
         $cert = $file->load();
         $this->assertInstanceOf(CertInfo::class, $cert);
     }
@@ -34,7 +35,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function test_an_invalid_source_location_returns_an_invalid_certificate()
     {
-        $file = new File('somesource');
+        $file = new File(new Host());
         $cert = $file->load();
         $this->assertFalse($cert->isValid());
     }

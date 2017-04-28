@@ -30,12 +30,12 @@ class CertificateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that create returns an instance of Web for the https
+     * Test that create returns an instance of Web for the http
      * schema.
      */
-    public function test_it_returns_web_source_on_http()
+    public function test_it_returns_web_source_on_https()
     {
-        $actual = SourceFactory::create('http://www.google.com');
+        $actual = SourceFactory::create('https://www.google.com');
         $this->assertInstanceOf(Web::class, $actual);
     }
 
@@ -43,9 +43,9 @@ class CertificateTest extends \PHPUnit_Framework_TestCase
      * Test that create returns an instance of Web for the http
      * schema.
      */
-    public function test_it_returns_web_source_on_https()
+    public function test_it_returns_web_source_on_imaps()
     {
-        $actual = SourceFactory::create('http://www.google.com');
+        $actual = SourceFactory::create('imaps://smtp.gmail.com');
         $this->assertInstanceOf(Web::class, $actual);
     }
 }

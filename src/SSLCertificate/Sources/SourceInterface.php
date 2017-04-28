@@ -1,6 +1,7 @@
 <?php
 
 namespace JM\Validators\SSLCertificate\Sources;
+use JM\Validators\SSLCertificate\Host;
 
 interface SourceInterface
 {
@@ -10,7 +11,7 @@ interface SourceInterface
      *
      * @param string $source
      */
-    public function __construct($source = '');
+    public function __construct(Host $host);
 
     /**
      * Load the Certificate from the given

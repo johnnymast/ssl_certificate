@@ -8,6 +8,11 @@ namespace JM\Validators\SSLCertificate;
  *
  * @package JM\Validators
  */
+
+/**
+ * Class UrlParser
+ * @package JM\Validators\SSLCertificate
+ */
 class UrlParser
 {
 
@@ -23,6 +28,12 @@ class UrlParser
      */
     protected $type = '';
 
+    /**
+     * The parsed host
+     * @var Host
+     */
+    protected $host = null;
+
 
     /**
      * UrlParser constructor.
@@ -31,8 +42,10 @@ class UrlParser
      */
     public function __construct($url)
     {
+        // Make sure we have a schema ..
+
         $this->url = $url;
-        $this->information = parse_url($this->url);
+        $this->host = new Host(parse_url($this->url));
     }
 
 
@@ -43,9 +56,7 @@ class UrlParser
      */
     public function isValid()
     {
-        return ($this->information !== false
-            && isset($this->information['scheme']) == true
-            && empty($this->information['scheme']) == false);
+        return $this->host->isValid();
     }
 
 
@@ -56,6 +67,15 @@ class UrlParser
      */
     public function getType()
     {
-        return (isset($this->information['scheme'])) ? $this->information['scheme'] : 'unknown';
+        return $this->host->scheme ? $this->host->scheme : 'unknown';
+    }
+
+
+    /**
+     * @return Host
+     */
+    public function getHost()
+    {
+        return $this->host;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace JM\Validators\SSLCertificate\Adapters;
 
+use JM\Validators\SSLCertificate\Host;
+
 class Stream extends AdapterAbstract implements AdapterInterface
 {
     /**
@@ -12,7 +14,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
      * @param int $port
      * @return mixed
      */
-    public function interact($host = '', $port = 0)
+    public function interact(Host $host)
     {
         $streamContext = stream_context_create([
             'ssl' => [
@@ -25,7 +27,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
         }
 
         // creates errors
-        $client = @stream_socket_client($host, $errorNumber, $errorDescription, $timeout = 180, STREAM_CLIENT_CONNECT, $streamContext);
+        $client = @stream_socket_client('ssl://'.$host->host.':'.$host->port, $errorNumber, $errorDescription, $timeout = 180, STREAM_CLIENT_CONNECT, $streamContext);
         if (! $client) {
             return false;
         }

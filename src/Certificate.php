@@ -7,7 +7,6 @@ use JM\Validators\SSLCertificate\Sources\SourceInterface;
 
 class Certificate
 {
-
     /**
      * This is the source for the
      * certificate.
@@ -15,7 +14,6 @@ class Certificate
      * @var SourceInterface|null
      */
     protected $source = null;
-
 
     /**
      * Construct the class with a source
@@ -28,16 +26,15 @@ class Certificate
         $this->source = $source;
     }
 
-
     /**
      * Get information about the Certificate.
+     *
      * @return mixed
      */
     public function getProvidedInformation()
     {
         return $this->source->load();
     }
-
 
     /**
      * Of as in Certificate of ..
@@ -55,5 +52,13 @@ class Certificate
         $source = SourceFactory::create($host);
 
         return (new Certificate($source))->getProvidedInformation();
+    }
+
+    /**
+     * @return \JM\Validators\SSLCertificate\Sources\SourceInterface|null
+     */
+    public function getSource()
+    {
+        return $this->source;
     }
 }

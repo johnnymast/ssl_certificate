@@ -3,6 +3,7 @@
 namespace JM\Validators\SSLCertificate\Adapters;
 
 use JM\Validators\SSLCertificate\Host;
+use PhpSpec\Exception\Exception;
 
 class Stream extends AdapterAbstract implements AdapterInterface
 {
@@ -15,26 +16,39 @@ class Stream extends AdapterAbstract implements AdapterInterface
      */
     public function interact(Host $host)
     {
-        $streamContext = stream_context_create([
-            'ssl' => [
-                'capture_peer_cert' => true,
-                'verify_peer' => false,
-            ],
+        $contextOptions = [
+            'capture_peer_cert' => true,
+            'verify_peer' => true,
+            'allow_self_signed' => true,
+
+        ];
+
+        // SINI ?
+        if ($this->verificationMethod == self::VERIFY_COMMON_NAME_AND_MATCHES_HOST) {
+            $contextOptions['verify_peer_name'] = true;
+        }
+
+       $streamContext = stream_context_create([
+            'ssl' => $contextOptions,
         ]);
+
         if (! $streamContext) {
             return false;
         }
 
-        // creates errors
-        $client = @stream_socket_client('ssl://'.$host->host.':'.$host->port, $errorNumber, $errorDescription, $timeout = 180, STREAM_CLIENT_CONNECT, $streamContext);
+        $client = @stream_socket_client('ssl://'.$host->host.':'.$host->port, $errno, $errstr, $this->timeout, STREAM_CLIENT_CONNECT, $streamContext);
+
+
         if (! $client) {
             return false;
         }
-        $response = @stream_context_get_params($client);
-        if (! $response) {
-            return false;
-        }
 
-        return openssl_x509_parse($response['options']['ssl']['peer_certificate']);
+        // if client
+        $response = stream_context_get_params($client);
+
+        if (is_array($response))
+            return openssl_x509_parse($response['options']['ssl']['peer_certificate']);
+
+        return false;
     }
 }

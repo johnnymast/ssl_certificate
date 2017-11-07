@@ -25,17 +25,18 @@ class Curl extends AdapterAbstract implements AdapterInterface
         curl_setopt($ch, CURLOPT_CERTINFO, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_NOBODY, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 
         /**
-         * Please note: Option 1 will be removed in PHP 7.2
+         * Please note: Option 1 (VERIFY_COMMON_NAME_ONLY) will be removed in PHP 7.2
          * This will affect: "check the existence of a common name in the SSL peer certificate."
          */
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->verificationMethod);
 
         $result = curl_exec($ch);
-
+       
         if ($result !== false) {
 
             $cert = curl_getinfo($ch, CURLINFO_CERTINFO);

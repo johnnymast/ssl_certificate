@@ -21,7 +21,7 @@ class Host
         $this->fields = [
             'scheme'   => '',
             'host'     => '',
-            'port'     => '',
+            'port'     => 0,
             'user'     => '',
             'pass'     => '',
             'path'     => '',
@@ -87,10 +87,14 @@ class Host
             return true;
         }
 
-        $port = getservbyname($this->scheme, 'tcp');
-        if ($port) {
-            $this->fields['port'] = $port;
+        if ($this->fields['port'] == 0) {
+            $port = getservbyname($this->scheme, 'tcp');
+            if ($port) {
+                $this->fields['port'] = $port;
 
+                return true;
+            }
+        } else {
             return true;
         }
 

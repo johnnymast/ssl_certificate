@@ -10,21 +10,19 @@ use JM\Validators\SSLCertificate\Sources\Web;
 
 class SourceFactory
 {
-
     /**
      * @var array
      */
     protected static $map = [
         'https' => Web::class,
-        'ssl'   => Web::class,
-        'file'  => File::class,
+        'ssl' => Web::class,
+        'file' => File::class,
         'imaps' => Web::class,
     ];
 
-
     /**
      * @param string $url
-     * @param null   $of_type
+     * @param null $of_type
      *
      * @return mixed
      * @throws InvalidHostException
@@ -38,26 +36,25 @@ class SourceFactory
         if ($of_type != null) {
             $sourceType = $of_type;
         } else {
-            if ( ! $parser->isValid()) {
+            if (! $parser->isValid()) {
                 throw new InvalidHostException('Protocol for '.$url.' could not be determined');
             }
         }
 
         $source = self::getMapping($sourceType);
 
-        if ( ! $source) {
+        if (! $source) {
             throw new UnknownSourceException('Unknown source type for '.$sourceType);
         }
 
         $instance = new $source($parser->getHost());
 
-        if ( ! $instance instanceof SourceInterface) {
+        if (! $instance instanceof SourceInterface) {
             throw new UnknownSourceException('Source '.$source.' did not implement SourceInterface');
         }
 
         return $instance;
     }
-
 
     /**
      * Add a new Custom mapping to the factory. This can be used
@@ -70,7 +67,6 @@ class SourceFactory
     {
         self::$map[$scheme] = $source;
     }
-
 
     /**
      * Return a source for a scheme.

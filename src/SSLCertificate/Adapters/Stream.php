@@ -10,8 +10,7 @@ class Stream extends AdapterAbstract implements AdapterInterface
      * Interact with the given source and
      * grab the certificate.
      *
-     * @param string $host
-     * @param int $port
+     * @param Host $host
      * @return mixed
      */
     public function interact(Host $host)

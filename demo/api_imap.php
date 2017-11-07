@@ -5,10 +5,6 @@ ini_set('display_errors', true);
 
 use JM\Validators\Certificate;
 
-$expired = Certificate::of('imaps://mail.locovsworld.com')
-    ->isExpired();
+$cert = Certificate::of('imaps://mail.locovsworld.com');
 
-
-
-
-echo 'Expired: '.(($expired) ? 'true' : 'false');
+print_r($cert);

@@ -47,6 +47,8 @@ class Certificate
      * @param string $host
      *
      * @return mixed
+     * @throws SSLCertificate\Exceptions\InvalidHostException
+     * @throws SSLCertificate\Exceptions\UnknownSourceException
      */
     public static function of($host = '')
     {

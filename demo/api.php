@@ -3,7 +3,7 @@ require dirname(__FILE__).'/../vendor/autoload.php';
 
 use JM\Validators\Certificate;
 
-$host = 'https://laraveluk.slack.com';
+$host = 'https://www.directtuin.323/';
 $cert = Certificate::of($host);
 
 echo "\n";

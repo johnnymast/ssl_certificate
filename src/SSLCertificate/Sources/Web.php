@@ -16,7 +16,7 @@ class Web extends SourceAbstract implements SourceInterface
      * Construct the source with the source
      * location.
      *
-     * @param string $source
+     * @param Host $host
      */
     public function __construct(Host $host)
     {
